@@ -2,7 +2,7 @@
 #Author: https://github.com/calucas27
 require 'discordrb'
 
-bot = Discordrb::Bot.new token:'NDI3OTgwNjMxNjcxMTc3MjE2.DZsdbA.6PyK9tDh4NoF10rBN_H4BEQs1-0'
+bot = Discordrb::Bot.new token:'<|Your Token Goes Here|>'
 
 bot.message(content: 'Asako') do |event|
     event.respond 'Hello, my name is Asako!  Check out https://github.com/calucas27 for more cool stuff!'
