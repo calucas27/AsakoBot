@@ -18,7 +18,7 @@ bot.message(content: 'Asako help') do |event|
         `Asako gitsearch`: Search github for a given username.
         `Asako join channel`: Joins the bot to the current voice channel.
         `Asako play song`: Play's everyone's favorite CCDC cleanup song.
-        `Asako stop song`: Kills the current voice session.
+        `Asako leave channel`: Kills the current voice session.
     }
     event.user.pm(commands)
 end
