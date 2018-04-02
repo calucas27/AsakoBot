@@ -2,7 +2,7 @@
 #Author: https://github.com/calucas27
 require 'discordrb'
 
-bot = Discordrb::Bot.new token:'<|Your Token Goes Here|>'
+bot = Discordrb::Bot.new token:'NDI3OTgwNjMxNjcxMTc3MjE2.DZsdbA.6PyK9tDh4NoF10rBN_H4BEQs1-0'
 
 bot.message(content: 'Asako') do |event|
     event.respond 'Hello, my name is Asako!  Check out https://github.com/calucas27 for more cool stuff!'
@@ -13,12 +13,14 @@ bot.message(content: 'Asako help') do |event|
         *Here's my commands! -- Mention me and I can reply back to you!*
         `Asako`: Say hello to Asako!
         `Asako help`: Displays this list again.
+	    `Asako say`: Make Asako say something in the current channel.
+	    `Asako ping`: Pong!
         `Asako gitsearch`: Search github for a given username.
         `Asako join channel`: Joins the bot to the current voice channel.
         `Asako play song`: Play's everyone's favorite CCDC cleanup song.
         `Asako stop song`: Kills the current voice session.
     }
-    event.respond(commands)
+    event.user.pm(commands)
 end
 
 bot.message(content: 'Pi') do |event|
@@ -65,8 +67,19 @@ bot.message(content: "Asako leave channel") do |event|
     bot.voice_destroy(channel)
 end
 
+bot.message(start_with: "Asako say") do |event_say|
+	msg = event_say.message.content
+	msg = msg.split(' ')[2..-1].join(' ')
+	event_say.respond(msg)
+end
+
+bot.message(content: "Asako ping") do |event|
+	pingmsg = event.respond("Pong")
+	pingmsg.edit("Pong! -- I answered in #{Time.now - event.timestamp} seconds!")
+end
+
 bot.mention do |event|
-    output = `py -3 markov.py bible.txt`
+    output = `python3 markov.py lotrscript.txt`
     event.respond(output)
 end
 
